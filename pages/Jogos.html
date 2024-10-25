@@ -3,15 +3,43 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jogos</title>
+    <link
+      rel="shortcut icon"
+      href="https://img.goodfon.com/original/2650x1440/f/bb/nba-logo-basketbol.jpg"
+      type="image/x-icon"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Matemasie&display=swap"
+      rel="stylesheet"
+    />
+    <title>NBA Tracker</title>
     <link rel="stylesheet" href="../styles/jogos.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Matemasie&family=Righteous&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <div class="container">
-      <h1>Jogos da NBA</h1>
-      <button id="loadGames">Carregar Jogos</button>
-      <div id="gamesList" class="games-list"></div>
+    <div class="navbar">
+      <a href="Home.html">Home</a>
+      <a href="Times.html">Times</a>
+      <img
+        src="https://cdn.discordapp.com/attachments/968229431988604940/1298786449436446770/image.psd_1.png?ex=671ad4a3&is=67198323&hm=105dc055d35d47dd31b4e8d31538a61768d535bf17e4f5ee56dc31a44cdf9045&"
+        style="scale: 0.8; margin: -6.35vw"
+        alt=""
+      />
+      <a href="Jogos.html">Jogos</a>
+      <a href="https://www.nbadle.com/">NBADle</a>
     </div>
-    <script src="../scripts/jogos.js"></script>
+    <h1 id="title-dia"></h1>
+    <div id="scores"></div>
+    <h1 id="title-amanha"></h1>
+    <div id="scores-amanha"></div>
+    <div class="loading" id="loading">Carregando...</div>
+    <script type="module" src="../scripts/jogos.js"></script>
   </body>
 </html>

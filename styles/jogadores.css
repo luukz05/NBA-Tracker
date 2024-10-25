@@ -1,21 +1,26 @@
-/* Estilo global */
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Matemasie&family=Righteous&display=swap");
 body {
   font-family: sans-serif;
-  background-color: #f3f4f6; /* Fundo claro */
+  background-color: #000000; /* Fundo claro */
   margin: 0;
   padding: 0;
   color: #ffffff; /* Texto escuro */
-  background-image: url("https://i.redd.it/m6up7z4yphh31.jpg");
+  background-image: url(https://cdn.gazetasp.com.br/upload/dn_arquivo/2024/06/conferencia-leste-regulamento-nba.jpg);
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-size: cover;
-  background-position: center;
+  background-size: contain;
+  background-position: left;
+  font-family: "Righteous", sans-serif;
+  letter-spacing: 1.15px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 /* Container principal */
 #playerInfo {
   max-width: 800px;
-  margin: 20px auto;
   padding: 20px;
   border-radius: 8px;
   background-color: rgba(83, 83, 83, 0.9); /* Fundo do card com transparência */
@@ -54,7 +59,9 @@ a {
   font-weight: bold;
   transition: color 0.3s; /* Transição suave */
 }
-
+.navbar a:hover {
+  text-decoration: underline;
+}
 a:hover {
   color: #0080b3; /* Tom mais escuro de azul para hover */
   text-decoration: underline;
@@ -93,6 +100,7 @@ a:hover {
   justify-content: space-evenly;
   align-items: center;
   z-index: 1;
+  font-size: 1.3rem;
 }
 a,
 a:visited {
@@ -101,11 +109,18 @@ a:visited {
   font-size: 1.3rem;
 }
 
-#cu {
-  position: absolute;
-  margin-right: 350px;
+.navbar {
+  background-color: #333;
+  height: 7.75vh;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  z-index: 1;
+  margin-bottom: 20px;
 }
-
 /* Estilo de responsividade */
 @media (max-width: 600px) {
   #playerInfo {

@@ -16,27 +16,33 @@
     />
     <title>NBA Tracker</title>
     <link rel="stylesheet" href="../styles/home.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Matemasie&family=Righteous&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div class="navbar">
+      <a href="Home.html">Home</a>
       <a href="Times.html">Times</a>
-      <a href="Times.html">Calendário</a>
       <img
         src="https://cdn.discordapp.com/attachments/968229431988604940/1298786449436446770/image.psd_1.png?ex=671ad4a3&is=67198323&hm=105dc055d35d47dd31b4e8d31538a61768d535bf17e4f5ee56dc31a44cdf9045&"
         style="scale: 0.8; margin: -6.35vw"
         alt=""
       />
-      <a href="Jogos.html">Ao vivo</a>
+      <a href="Jogos.html">Jogos</a>
       <a href="https://www.nbadle.com/">NBADle</a>
-      <img
-        id="cu"
-        src="https://cdn.discordapp.com/attachments/834625030683230218/1299051587020394507/Nba.png?ex=671bcb91&is=671a7a11&hm=ece8862b340d44165c7623376d78c243dd7e6c69f96a2b72e7feff6b2a1e79c6&"
-        alt="bolas"
-        style="height: 50px"
-      />
     </div>
-    <div id="scores"></div>
-    <div class="loading" id="loading">Carregando...</div>
+    <!-- <div class="container">
+      <h1>Notícias da NBA</h1>
+      <div id="news-container"></div>
+    </div> -->
+    <div class="news-container">
+      <div class="news-wrapper" id="newsWrapper"></div>
+    </div>
+
     <script type="module" src="../scripts/home.js"></script>
   </body>
 </html>

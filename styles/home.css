@@ -163,7 +163,7 @@ body {
   margin-top: 20px;
   font-size: larger;
   color: rgb(95, 164, 241);
-  transition: ease-in-out 300ms;
+  transition: ease-in-out 250ms;
 }
 @keyframes scroll {
   0% {

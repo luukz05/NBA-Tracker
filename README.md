@@ -21,11 +21,12 @@ NBA TRACKER é um projeto desenvolvido para monitorar e analisar jogos da NBA, u
    - Exibe uma lista de jogos recentes.
    - Integração com a API da RapidAPI para obter dados em tempo real.
 
-2. **Página de Jogadores**
-   - Redireciona para `Jogadores.html`, onde detalhes dos jogadores são exibidos.
+2. **Página de Times**
+   - Mostra  detalhadamente as informações dos times e seus respectivos rosters.
+   - Redireciona para `Jogadores.html`, onde detalhes e estatísticas dos jogadores são exibidos.
    - Os dados dos jogadores são extraídos da API da RapidAPI.
 
-3. **API Integrations**
+4. **API Integrations**
    - **RapidAPI:** Utilizada para obter informações sobre as equipes e estatísticas dos jogadores em formato JSON.
 
 ## Funcionalidades

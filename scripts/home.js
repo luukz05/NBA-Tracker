@@ -30,7 +30,7 @@ try {
       const newsHeadline = document.createElement("div"); // Cria um elemento div para exibir cada notícia
       newsHeadline.class = "news-headlineee"; // Define uma classe para estilização
       newsHeadline.style = // Define o estilo inline do elemento
-        "background: #575757d8;width:125vh;display:flex;justify-content:center; align-items:center;flex-direction:column;padding:20px;margin-top:10px;border-radius:8px";
+        "background: #575757d8;width:125vh;display:flex;justify-content:center; align-items:center;flex-direction:column;padding:20px;margin-top:10px;border-radius:16px";
       newsHeadline.href = data.link; // Adiciona o link da notícia
       newsHeadline.target = "_blank"; // Abre o link em uma nova aba
 
@@ -40,6 +40,7 @@ try {
         <img src="${data.image}" alt="Imagem da notícia" class="headline-img">
         <a href="${data.link}" target="_blank" class="saiba-mais-link">Saiba mais</a>
       `;
+      newsHeadline.style.backgroundImage = "linear-gradient(rgba(0,0,0,0.65), rgba(15,10,45,0.65))";
 
       // Adiciona o elemento de notícia ao contêiner principal da página
       document.getElementById("news-container").appendChild(newsHeadline);

@@ -102,7 +102,7 @@ body {
   font-weight: bold;
   text-decoration: none;
 }
-.top-news-container a:hover {
+.top-news-container    a:hover {
   text-decoration: underline;
 }
 .top-news-container a,
@@ -123,7 +123,7 @@ body {
   display: flex;
   align-items: center;
   flex-direction: row;
-  font-size: 12px;
+  font-size: 15px;
   text-decoration: none;
 }
 
@@ -132,6 +132,7 @@ body {
   animation: scroll 15s linear infinite; /* Ajuste a duração conforme necessário */
   flex-direction: row; /* Alinha itens em linha */
   white-space: nowrap; /* Impede a quebra de linha */
+  height: 20px;
   gap: 50px;
 }
 
@@ -152,7 +153,7 @@ body {
 .saiba-mais-link,
 .saiba-mais-link:visited {
   font-weight: 100;
-  color: #bbb;
+  color: #ddd;
   text-decoration: none;
   margin-top: 20px;
   font-size: larger;
@@ -161,6 +162,8 @@ body {
   text-decoration: underline;
   margin-top: 20px;
   font-size: larger;
+  color: rgb(95, 164, 241);
+  transition: ease-in-out 300ms;
 }
 @keyframes scroll {
   0% {

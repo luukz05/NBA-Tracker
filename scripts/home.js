@@ -1,52 +1,95 @@
-// script.js
+// Importa a chave da API do arquivo externo para mantê-la segura e reutilizável em diferentes requisições
+import apiKey from "../scripts/rapid-api-key.js";
 
-const url =
+// Define a URL para as principais notícias da NBA usando o RapidAPI
+const urlTopNews =
   "https://tank01-fantasy-stats.p.rapidapi.com/getNBANews?topNews=true";
+
+// Define as opções da requisição, incluindo o método GET e os cabeçalhos com a chave e o host da API
 const options = {
   method: "GET",
   headers: {
-    "x-rapidapi-key": "36401f18c1mshbe63e7a864a0c0cp171490jsn90e42c6bf31e",
-    "x-rapidapi-host": "tank01-fantasy-stats.p.rapidapi.com",
+    "x-rapidapi-key": `${apiKey}`, // Define a chave da API
+    "x-rapidapi-host": "tank01-fantasy-stats.p.rapidapi.com", // Define o host da API
   },
 };
 
-async function fetchNews() {
+// URL para obter notícias recentes da NBA
+const urlNews =
+  "https://tank01-fantasy-stats.p.rapidapi.com/getNBANews?topNews=false&recentNews=true";
+
+try {
+  // Faz a requisição para a API de notícias recentes
+  const response = await fetch(urlNews, options); // Envia a requisição
+  const result = await response.json(); // Converte a resposta em JSON
+  const headlines = result.body; // Extrai o corpo das notícias
+
+  // Verifica se o retorno é um array de manchetes
+  if (Array.isArray(headlines)) {
+    headlines.forEach((data) => {
+      const newsHeadline = document.createElement("div"); // Cria um elemento div para exibir cada notícia
+      newsHeadline.class = "news-headlineee"; // Define uma classe para estilização
+      newsHeadline.style = // Define o estilo inline do elemento
+        "background: #575757d8;width:125vh;display:flex;justify-content:center; align-items:center;flex-direction:column;padding:20px;margin-top:10px;border-radius:8px";
+      newsHeadline.href = data.link; // Adiciona o link da notícia
+      newsHeadline.target = "_blank"; // Abre o link em uma nova aba
+
+      // Define o conteúdo HTML da notícia com título e imagem
+      newsHeadline.innerHTML = `
+        <p class="news-content">${data.title}</p>
+        <img src="${data.image}" alt="Imagem da notícia" class="headline-img">
+        <a href="${data.link}" target="_blank" class="saiba-mais-link">Saiba mais</a>
+      `;
+
+      // Adiciona o elemento de notícia ao contêiner principal da página
+      document.getElementById("news-container").appendChild(newsHeadline);
+    });
+  }
+} catch (error) {
+  // Captura e exibe erros caso a requisição falhe
+  console.error(error);
+}
+
+// Função para buscar e exibir as principais notícias da NBA
+async function fetchTopNews() {
   try {
-    const response = await fetch(url, options);
-    const result = await response.json();
+    const response = await fetch(urlTopNews, options); // Envia a requisição para as principais notícias
+    const result = await response.json(); // Converte a resposta em JSON
 
-    // Exibir todas as informações do JSON
-    console.log(JSON.stringify(result, null, 2)); // Exibe a estrutura formatada
+    // Exibe o JSON completo formatado para visualização
+    console.log(JSON.stringify(result, null, 2));
 
-    // Acesse o array de notícias através da propriedade body
-    const noticias = result.body;
+    const noticias = result.body; // Extrai o array de notícias
 
-    // Verifique se 'noticias' é um array
+    // Verifica se 'noticias' é um array
     if (Array.isArray(noticias)) {
       noticias.forEach((noticia) => {
-        console.log(noticia); // Exibe cada notícia individualmente
+        console.log(noticia); // Exibe cada notícia no console
 
-        const newsCard = document.createElement("a");
-        newsCard.classList.add("top-news-link");
-        newsCard.href = noticia.link; // Adicionando o href diretamente ao elemento
-        newsCard.target = "_blank"; // Para abrir em nova aba
+        const newsCard = document.createElement("a"); // Cria um link para cada notícia
+        newsCard.classList.add("top-news-link"); // Define a classe para estilização
+        newsCard.href = noticia.link; // Adiciona o link da notícia
+        newsCard.target = "_blank"; // Abre o link em uma nova aba
 
+        // Define o conteúdo HTML do link com o título da notícia
         newsCard.innerHTML = `
-                    <div class="top-news-content">
-                        ${noticia.title}
-                    </div>
-                `;
+          <div class="top-news-content">
+            ${noticia.title}
+          </div>
+        `;
 
-        // Adiciona o card de notícias ao contêiner
+        // Adiciona o card de notícias ao contêiner principal da página
         document.getElementById("newsWrapper").appendChild(newsCard);
       });
     } else {
-      console.error("A propriedade body não é um array:", noticias);
+      // Caso o retorno não seja um array, exibe uma mensagem de erro no console
+      console.error("A propriedade body não é um array:", data);
     }
   } catch (error) {
+    // Captura e exibe erros caso a requisição falhe
     console.error("Erro ao buscar notícias:", error);
   }
 }
 
-// Chama a função para buscar as notícias
-fetchNews();
+// Chama a função para buscar as principais notícias ao carregar o script
+fetchTopNews();

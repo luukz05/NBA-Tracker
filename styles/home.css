@@ -74,10 +74,6 @@ body {
   font-size: 1.2em;
   color: #666;
 }
-.team-logo {
-  height: 4vw;
-  width: 4vw;
-}
 .detail {
   display: flex;
   flex-direction: column;
@@ -106,8 +102,11 @@ body {
   font-weight: bold;
   text-decoration: none;
 }
-.news-container a,
-.news-container:visited {
+.top-news-container a:hover {
+  text-decoration: underline;
+}
+.top-news-container a,
+.top-news-container:visited {
   font-weight: 100;
   color: #bbb;
   text-decoration: none;
@@ -115,7 +114,7 @@ body {
 .navbar a:hover {
   text-decoration: underline;
 }
-.news-container {
+.top-news-container {
   width: 100%; /* Largura total */
   height: calc(font-size - 50%); /* Altura desejada */
   overflow: hidden; /* Oculta qualquer conteúdo que ultrapasse o contêiner */
@@ -146,6 +145,23 @@ body {
   font-size: 10px;
 }
 
+.headline-img {
+  height: auto;
+  width: 500px;
+}
+.saiba-mais-link,
+.saiba-mais-link:visited {
+  font-weight: 100;
+  color: #bbb;
+  text-decoration: none;
+  margin-top: 20px;
+  font-size: larger;
+}
+.saiba-mais-link:hover {
+  text-decoration: underline;
+  margin-top: 20px;
+  font-size: larger;
+}
 @keyframes scroll {
   0% {
     transform: translateX(0);

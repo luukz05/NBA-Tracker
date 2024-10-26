@@ -2,9 +2,9 @@ body {
   font-family: Arial, sans-serif;
   background-image: url(https://www.pixelstalk.net/wp-content/uploads/images6/NBA-HD-Wallpaper-Computer.jpg);
   color: #eee;
-  background-position: left;
+  background-position: calc(bottom - 5px);
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   background-color: black;
   background-attachment: fixed;
   margin: 0;

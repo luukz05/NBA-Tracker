@@ -1,172 +1,205 @@
+// Importa a chave da API de um arquivo separado para uso nas requisições
 import apiKey from "../scripts/rapid-api-key.js";
+
+// Obtém os elementos do DOM onde os dados dos jogos serão exibidos
 const scoresDiv = document.getElementById("scores");
 const loadingDiv = document.getElementById("loading");
 const displayDate = document.getElementById("title-dia");
 const displayTomorrow = document.getElementById("title-amanha");
 const tomorrowScoresDiv = document.getElementById("scores-amanha"); // Contêiner para jogos de amanhã
 
+// Função para formatar a data no formato YYYYMMDD
 function formatDate(date) {
   const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
-  return `${year}${month}${day}`;
+  const month = String(date.getMonth() + 1).padStart(2, "0"); // Meses são 0-indexados
+  const day = String(date.getDate()).padStart(2, "0"); // Garante que o dia tenha 2 dígitos
+  return `${year}${month}${day}`; // Retorna a data formatada
 }
 
+// Função assíncrona para buscar os placares da NBA
 async function fetchNBAScores() {
-  const today = new Date();
-  const gameDate = formatDate(today);
+  const today = new Date(); // Obtém a data atual
+  const gameDate = formatDate(today); // Formata a data
 
+  // Valida se a data está correta
   if (!gameDate || typeof gameDate !== "string") {
     console.error("Erro: `gameDate` está em um formato inválido.", gameDate);
-    return;
+    return; // Sai da função se a data for inválida
   }
 
+  // URL da API com a data dos jogos
   const url = `https://tank01-fantasy-stats.p.rapidapi.com/getNBAScoresOnly?gameDate=${gameDate}&topPerformers=true&lineups=true`;
   const options = {
     method: "GET",
     headers: {
       "x-rapidapi-host": "tank01-fantasy-stats.p.rapidapi.com",
-      "x-rapidapi-key": `${apiKey}`,
+      "x-rapidapi-key": `${apiKey}`, // Adiciona a chave da API nos headers
     },
   };
 
   try {
-    const response = await fetch(url, options);
-    const data = await response.json();
-    loadingDiv.style.display = "none";
-    displayDate.innerHTML = `Jogos do dia ${today.toLocaleDateString()}`;
+    const response = await fetch(url, options); // Realiza a requisição
+    const data = await response.json(); // Converte a resposta para JSON
+    loadingDiv.style.display = "none"; // Esconde o elemento de carregamento
+    displayDate.innerHTML = `Jogos do dia ${today.toLocaleDateString()}`; // Exibe a data dos jogos
 
+    // Chama a função para exibir os placares
     displayScores(data.body, scoresDiv);
     fetchNBASchedule(); // Chama a função para buscar jogos de amanhã
   } catch (error) {
+    // Exibe mensagem de erro se a requisição falhar
     scoresDiv.innerHTML =
       "<p>Erro ao carregar os dados. Tente novamente mais tarde.</p>";
     console.error("Erro:", error);
   }
 }
 
+// Função assíncrona para buscar a programação dos jogos de amanhã
 async function fetchNBASchedule() {
-  const tomorrow = new Date();
+  const tomorrow = new Date(); // Obtém a data atual
   tomorrow.setDate(tomorrow.getDate() + 1); // Avança para o dia seguinte
-  const tomorrowDate = formatDate(tomorrow);
-  displayTomorrow.innerHTML = `Jogos do dia ${tomorrow.toLocaleDateString()}`;
+  const tomorrowDate = formatDate(tomorrow); // Formata a data de amanhã
+  displayTomorrow.innerHTML = `Jogos do dia ${tomorrow.toLocaleDateString()}`; // Exibe a data de amanhã
 
-  //   const url = `https://tank01-fantasy-stats.p.rapidapi.com/getNBAGamesForDate?gameDate=${tomorrowDate}`;
-
+  // URL da API para buscar a programação dos jogos de amanhã
   const url = `https://tank01-fantasy-stats.p.rapidapi.com/getNBAGamesForDate?gameDate=${tomorrowDate}`;
   const options = {
     method: "GET",
     headers: {
       "x-rapidapi-host": "tank01-fantasy-stats.p.rapidapi.com",
-      "x-rapidapi-key": `${apiKey}`,
+      "x-rapidapi-key": `${apiKey}`, // Adiciona a chave da API nos headers
     },
   };
 
   try {
-    const response = await fetch(url, options);
-    const data = await response.json();
+    const response = await fetch(url, options); // Realiza a requisição
+    const data = await response.json(); // Converte a resposta para JSON
     displayScores(data.body, tomorrowScoresDiv); // Exibe os jogos de amanhã
   } catch (error) {
+    // Exibe mensagem de erro se a requisição falhar
     tomorrowScoresDiv.innerHTML =
       "<p>Erro ao carregar a programação para amanhã. Tente novamente mais tarde.</p>";
     console.error("Erro ao carregar a programação:", error);
   }
 }
 
+// Função para exibir os placares dos jogos
 function displayScores(games, container) {
+  // Verifica se existem jogos
   if (!games || Object.keys(games).length === 0) {
-    container.innerHTML = "<p>Nenhum jogo encontrado para esta data.</p>";
-    return;
+    container.innerHTML = "<p>Nenhum jogo encontrado para esta data.</p>"; // Mensagem caso não haja jogos
+    return; // Sai da função
   }
 
+  // Busca os logotipos dos times a partir de um arquivo JSON
   fetch(`../scripts/times.json`)
-    .then((response) => response.json())
+    .then((response) => response.json()) // Converte a resposta para JSON
     .then((data) => {
-      const teamsLogos = {};
-      const teamColors = {};
+      const teamsLogos = {}; // Objeto para armazenar os logotipos dos times
+      const teamColors = {}; // Objeto para armazenar as cores dos times
       data.forEach((team) => {
-        teamsLogos[team.Key] = team.WikipediaLogoUrl;
+        teamsLogos[team.Key] = team.WikipediaLogoUrl; // Armazena o logotipo do time
         if (team.PrimaryColor) {
-          teamColors[team.Key] = `#${team.PrimaryColor}`;
+          teamColors[team.Key] = `#${team.PrimaryColor}`; // Armazena a cor primária do time
         }
       });
 
+      // Itera sobre cada jogo encontrado
       for (const gameID in games) {
-        const game = games[gameID];
-        const gameDiv = document.createElement("div");
-        gameDiv.classList.add("game");
+        const game = games[gameID]; // Obtém os dados do jogo
+        const gameDiv = document.createElement("div"); // Cria um novo elemento para o jogo
+        gameDiv.classList.add("game"); // Adiciona a classe "game" ao elemento
 
-        const homeTeam = game.home || "Desconhecido";
-        const awayTeam = game.away || "Desconhecido";
-        const homePts = game.homePts || "0";
-        const awayPts = game.awayPts || "0";
-        const status = game.gameStatus || "Not Started Yet";
+        // Obtém informações dos times e pontos
+        const homeTeam = game.home || "Desconhecido"; // Time da casa
+        const awayTeam = game.away || "Desconhecido"; // Time visitante
+        const homePts = game.homePts || "0"; // Pontos do time da casa
+        const awayPts = game.awayPts || "0"; // Pontos do time visitante
+        const status = game.gameStatus || "Not Started Yet"; // Status do jogo
 
-        let statusColor = "#ffffff";
+        // Define a cor do status do jogo
+        let statusColor = "#ffffff"; // Cor padrão
         switch (status) {
           case "Aguardando Início":
-            statusColor = "#ffffff";
+            statusColor = "#ffffff"; // Cor para "Aguardando Início"
             break;
           case "Live - In Progress":
-            statusColor = "#ff0000";
+            statusColor = "#ff0000"; // Cor para "Live - In Progress"
             break;
           case "Finalizado":
-            statusColor = "#00ff00";
+            statusColor = "#00ff00"; // Cor para "Finalizado"
             break;
         }
 
+        // Monta a estrutura HTML do jogo
         gameDiv.innerHTML = `
         <div class="score">
           <div class="team-container">
             <div class="detail">
-              <img src="${teamsLogos[awayTeam]}" alt="${awayTeam}" class="team-logo">
-              <span class="team-name">${awayTeam}</span>
+              <img src="${teamsLogos[awayTeam]}" alt="${awayTeam}" class="team-logo"> <!-- Logotipo do time visitante -->
+              <span class="team-name">${awayTeam}</span> <!-- Nome do time visitante -->
             </div>
-            <span class="points">${awayPts}</span>
-            <span style="font-size: 1.8vw;">VS</span>
-            <span class="points">${homePts}</span>
+            <span class="points">${awayPts}</span> <!-- Pontos do time visitante -->
+            <span style="font-size: 1.8vw;">VS</span> <!-- Versus -->
+            <span class="points">${homePts}</span> <!-- Pontos do time da casa -->
             <div class="detail">
-              <img src="${teamsLogos[homeTeam]}" alt="${homeTeam}" class="team-logo">
-              <span class="team-name">${homeTeam}</span>
+              <img src="${teamsLogos[homeTeam]}" alt="${homeTeam}" class="team-logo"> <!-- Logotipo do time da casa -->
+              <span class="team-name">${homeTeam}</span> <!-- Nome do time da casa -->
             </div>
           </div>
           <div class="status-container">
-            <span style="color: ${statusColor}; font-weight: bold;">${status}</span>
+            <span style="color: ${statusColor}; font-weight: bold;">${status}</span> <!-- Status do jogo -->
           </div>
         </div>`;
 
+        // Adiciona o elemento do jogo ao contêiner
         container.appendChild(gameDiv);
 
-        const primaryColorHome = teamColors[homeTeam];
-        const primaryColorAway = teamColors[awayTeam];
+        const primaryColorHome = teamColors[homeTeam]; // Cor primária do time da casa
+        const primaryColorAway = teamColors[awayTeam]; // Cor primária do time visitante
 
+        // Adiciona efeito de mouse sobre o jogo
         gameDiv.addEventListener("mouseover", function () {
-          gameDiv.style.cursor = "pointer";
+          gameDiv.style.cursor = "pointer"; // Muda o cursor ao passar o mouse
+          // Aplica um gradiente de fundo baseado nas cores dos times
           gameDiv.style.backgroundImage = `linear-gradient(90deg, rgba(${hexToRgb(
             primaryColorAway || "#575757"
           )}, 0.6), rgba(${hexToRgb(primaryColorHome || "#575757")}, 0.6))`;
-          gameDiv.style.color = "#fff";
+          gameDiv.style.color = "#fff"; // Altera a cor do texto
           gameDiv.style.transition =
-            "background-image 1s ease-in, color 1s ease-in";
+            "background-image 1s ease-in, color 1s ease-in"; // Efeito de transição suave
         });
 
+        // Remove o efeito ao sair com o mouse
         gameDiv.addEventListener("mouseleave", function () {
-          gameDiv.style.backgroundImage = "";
-          gameDiv.style.backgroundColor = "#575757d8";
-          gameDiv.style.color = "#fff";
-          gameDiv.style.transition =
-            "background-color 1s ease-in, color 1s ease-in";
+          gameDiv.style.backgroundImage = ""; // Remove o gradiente de fundo
+          gameDiv.style.color = ""; // Restaura a cor do texto
         });
       }
+    })
+    .catch((error) => {
+      console.error("Erro ao buscar logotipos dos times:", error); // Mensagem de erro se falhar
     });
 }
 
+// Função para converter cor hexadecimal em RGB
 function hexToRgb(hex) {
-  const bigint = parseInt(hex.replace("#", ""), 16);
-  const r = (bigint >> 16) & 255;
-  const g = (bigint >> 8) & 255;
-  const b = bigint & 255;
-  return `${r},${g},${b}`;
+  let r = 0,
+    g = 0,
+    b = 0;
+
+  // Remove o símbolo '#' se presente
+  hex = hex.replace(/^#/, "");
+
+  // Converte para RGB
+  if (hex.length === 6) {
+    r = parseInt(hex.substring(0, 2), 16); // Obtém o valor vermelho
+    g = parseInt(hex.substring(2, 4), 16); // Obtém o valor verde
+    b = parseInt(hex.substring(4, 6), 16); // Obtém o valor azul
+  }
+
+  return [r, g, b]; // Retorna o valor RGB
 }
 
+// Chama a função para buscar os placares da NBA ao carregar a página
 fetchNBAScores();

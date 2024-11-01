@@ -18,8 +18,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     <img class="team-logo" src="${team.WikipediaLogoUrl}" alt="${team.FullName}">
                     <p><strong>Conferência:</strong> ${team.Conference}</p>
                     <p><strong>Divisão:</strong> ${team.Division}</p>
-                    <p><strong>Cidade:</strong> ${team.City}</p>
-                    <p><strong>Nome:</strong> ${team.Name}</p>
                     <p><strong>Nome Completo:</strong> ${team.City} ${team.Name}</p>
                     <p><strong>Abreviação:</strong> ${team.Key}</p>
                 `;
@@ -75,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     const primaryColorWithOpacity = `${normalizedPrimaryColor}99`; // 60% de opacidade
                     const secondaryColorWithOpacity = `${normalizedSecondaryColor}99`; // 60% de opacidade
                     teamItem.style.backgroundImage = `linear-gradient(#${primaryColorWithOpacity}, #${secondaryColorWithOpacity})`;
-                    playersList.style.backgroundColor = `#${normalizedPrimaryColor}`;
+                    playersList.style.backgroundColor = `#${normalizedPrimaryColor}99`;
                     teamItem.style.color = "#fffff"; // Texto preto
                     teamItem.style.transition =
                       "background-image 1s ease-in, color 1s ease-in"; // Transição suave

@@ -20,14 +20,6 @@ body {
 .navbar a:hover {
   text-decoration: underline;
 }
-/* h1 {
-    background-color: rgba(0, 0, 0, 0);
-    color: #fff;
-    margin: 0;
-    padding: 30px;
-    margin-bottom: 30px;
-    text-align: center;
-  } */
 .title-dia {
   background-color: rgba(0, 0, 0, 0);
   color: #fff;
@@ -53,13 +45,13 @@ body {
 
 .game {
   background: #575757d8;
-  padding: 15px;
+  padding: 1vh;
   border-radius: 8px;
   margin: 10px 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: 1s;
   width: 40vw;
-  height: 15vh;
+  height: 12vh;
 }
 .team-name {
   font-size: 1vw;
@@ -73,7 +65,7 @@ body {
 }
 .loading {
   text-align: center;
-  font-size: 1.2em;
+  font-size: 1vw;
   color: #666;
 }
 .team-logo {
@@ -87,8 +79,8 @@ body {
   gap: 0.5vw;
 }
 .status-container {
-  margin-top: -0.5vw;
-  font-size: 1vw;
+  margin-top: -2vw;
+  font-size: 0.72rem;
 }
 .navbar {
   background-color: #333;
@@ -107,9 +99,4 @@ a:visited {
   color: #bbb;
   font-weight: bold;
   font-size: 1.3rem;
-}
-
-#cu {
-  position: absolute;
-  margin-right: 350px;
 }

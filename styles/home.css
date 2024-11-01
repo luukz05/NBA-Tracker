@@ -8,6 +8,8 @@ body {
   background-color: rgb(185, 74, 74);
   background-attachment: fixed;
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -94,20 +96,28 @@ body {
   justify-content: space-evenly;
   align-items: center;
   z-index: 1;
-  font-size: 1.3rem;
+  font-size: 1em;
 }
 .navbar a,
 .navbar a:visited {
   color: #bbb;
   font-weight: bold;
   text-decoration: none;
+  font-size: 1em;
 }
-.top-news-container    a:hover {
+#news-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.top-news-container a:hover {
   text-decoration: underline;
 }
 .top-news-container a,
 .top-news-container:visited {
   font-weight: 100;
+  font-size: 1rem;
   color: #bbb;
   text-decoration: none;
 }
@@ -123,7 +133,7 @@ body {
   display: flex;
   align-items: center;
   flex-direction: row;
-  font-size: 15px;
+  font-size: 1rem;
   text-decoration: none;
 }
 
@@ -133,22 +143,21 @@ body {
   flex-direction: row; /* Alinha itens em linha */
   white-space: nowrap; /* Impede a quebra de linha */
   height: 20px;
-  gap: 50px;
+  gap: 5vw;
 }
 
 .news-card {
-  padding: 10px;
   text-decoration: none;
   color: #000; /* Cor do texto */
   background-color: #f9f9f9; /* Fundo do link */
-  min-width: 200px; /* Defina uma largura mínima para cada cartão */
+  min-width: 50vw; /* Defina uma largura mínima para cada cartão */
   margin-right: 50px; /* Espaço entre os cartões */
   font-size: 10px;
 }
 
 .headline-img {
   height: auto;
-  width: 500px;
+  width: 25vw;
 }
 .saiba-mais-link,
 .saiba-mais-link:visited {

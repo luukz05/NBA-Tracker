@@ -1,5 +1,5 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Righteous", sans-serif; /* Consolidando a fonte */
   background-image: url(https://www.pixelstalk.net/wp-content/uploads/images6/NBA-HD-Wallpaper-Computer.jpg);
   color: #eee;
   background-position: calc(bottom - 5px);
@@ -13,13 +13,31 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  font-family: "Righteous", sans-serif;
   letter-spacing: 1.15px;
   overflow-x: hidden;
 }
-.navbar a:hover {
-  text-decoration: underline;
+
+.navbar {
+  background-color: #333;
+  height: 7.75vh;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  z-index: 1;
+  font-size: 1em;
 }
+
+.navbar a,
+.navbar a:visited {
+  color: #bbb;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1em;
+}
+
 .title-dia {
   background-color: rgba(0, 0, 0, 0);
   color: #fff;
@@ -28,13 +46,14 @@ body {
   margin-bottom: 12px;
   text-align: center;
 }
+
 .score {
   display: flex;
   flex-direction: column;
-
   align-self: center;
   justify-content: space-evenly;
 }
+
 .team-container {
   justify-content: space-between;
   flex-direction: row;
@@ -50,53 +69,89 @@ body {
   margin: 10px 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: 1s;
-  width: 40vw;
-  height: 12vh;
+  width: 40vw; /* Largura padrão para desktops */
+  height: 15vh;
 }
+
 .team-name {
-  font-size: 1vw;
+  font-size: 1vw; /* Tamanho da fonte padrão */
 }
+
 .game:hover {
   box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.75);
-  scale: 1.2;
+  transform: scale(1.2); /* Usar transform em vez de scale */
 }
+
 .points {
-  font-size: 3vw;
+  font-size: 3vw; /* Tamanho da fonte das pontuações */
 }
+
 .loading {
   text-align: center;
-  font-size: 1vw;
+  font-size: 1vw; /* Tamanho da fonte para loading */
   color: #666;
 }
+
 .team-logo {
   height: 4vw;
   width: 4vw;
 }
+
 .detail {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.5vw;
 }
+
 .status-container {
-  margin-top: -2vw;
-  font-size: 0.72rem;
+  margin-top: -1vw;
+  font-size: 0.7rem;
 }
-.navbar {
-  background-color: #333;
-  height: 7.75vh;
-  width: 100%;
-  position: sticky;
-  top: 0;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  z-index: 1;
-  font-size: 1.3rem;
-}
-a,
-a:visited {
-  color: #bbb;
-  font-weight: bold;
-  font-size: 1.3rem;
+
+/* Media Query para telas menores */
+@media (max-width: 768px) {
+  .navbar {
+    font-size: 0.9em; /* Reduz o tamanho da fonte da navbar */
+  }
+
+  .game {
+    width: 100%; /* Aumenta a largura dos jogos para ocupar mais espaço */
+    height: auto; /* Ajusta a altura automaticamente */
+  }
+
+  .team-name {
+    font-size: 4vw; /* Aumenta o tamanho da fonte para mobile */
+  }
+
+  .points {
+    font-size: 5vw; /* Aumenta o tamanho da fonte das pontuações */
+  }
+
+  .loading {
+    font-size: 2vw; /* Aumenta o tamanho da fonte para loading */
+  }
+
+  .team-logo {
+    height: 10vw; /* Aumenta o tamanho das logos em mobile */
+    width: 10vw; /* Aumenta o tamanho das logos em mobile */
+  }
+
+  .detail {
+    gap: 1vw; /* Aumenta o espaço entre detalhes em mobile */
+  }
+
+  .status-container {
+    margin-top: 0; /* Remove a margem negativa */
+    font-size: 1rem; /* Aumenta o tamanho da fonte */
+  }
+
+  .score {
+    font-size: 2vw; /* Aumenta o tamanho da fonte da pontuação */
+  }
+
+  .team-container {
+    flex-direction: column; /* Muda a direção para coluna em mobile */
+    align-items: center; /* Centraliza os itens */
+  }
 }

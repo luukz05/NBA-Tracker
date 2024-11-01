@@ -1,31 +1,29 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Matemasie&family=Righteous&display=swap");
+
 body {
-  font-family: sans-serif;
-  background-color: #000000; /* Fundo claro */
+  font-family: f;
+  background-color: #000000; /* Fundo escuro */
   margin: 0;
   padding: 0;
-  color: #ffffff; /* Texto escuro */
+  color: #ffffff; /* Texto claro */
   background-image: url(https://cdn.gazetasp.com.br/upload/dn_arquivo/2024/06/conferencia-leste-regulamento-nba.jpg);
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: contain;
   background-position: left;
-  font-family: "Righteous", sans-serif;
-  letter-spacing: 1.15px;
-  justify-content: center;
   display: flex;
   align-items: center;
   flex-direction: column;
+  justify-content: center;
 }
 
 /* Container principal */
 #playerInfo {
-  max-width: 800px;
+  width: 800px;
+  height: fit-content;
   padding: 20px;
-  border-radius: 8px;
   background-color: rgba(83, 83, 83, 0.9); /* Fundo do card com transparência */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  justify-content: center;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -42,7 +40,8 @@ h2 {
 #playerInfo img {
   display: block;
   margin: 0 auto 20px auto;
-  border-radius: 20px;
+  width: 100%; /* Ajusta a imagem para ocupar toda a largura do container */
+  max-width: 250px; /* Largura máxima da imagem */
 }
 
 /* Parágrafos */
@@ -59,9 +58,29 @@ a {
   font-weight: bold;
   transition: color 0.3s; /* Transição suave */
 }
-.navbar a:hover {
-  text-decoration: underline;
+
+/* Navbar */
+.navbar {
+  background-color: #333;
+  height: 7.75vh;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  z-index: 800;
+  font-size: 1em;
 }
+
+.navbar a,
+.navbar a:visited {
+  color: #bbb;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1em;
+}
+
 a:hover {
   color: #0080b3; /* Tom mais escuro de azul para hover */
   text-decoration: underline;
@@ -73,11 +92,14 @@ a:hover {
   font-weight: bold;
 }
 
+/* Estilo do logo da equipe */
 .team-logo {
-  height: 250px;
-  width: 250px;
+  height: 10vh;
+  width: auto; /* Mantém a proporção da imagem */
+  position: relative; /* Para o degradê */
 }
 
+/* Estilo do container da imagem */
 .img-container {
   display: flex;
   flex-direction: row;
@@ -85,53 +107,23 @@ a:hover {
   align-items: center;
 }
 
-.team-logo {
-  height: 15vh;
-  width: auto;
-}
-
-.navbar {
-  background-color: #333;
-  height: 7.75vh;
-  width: 100%;
-  position: sticky;
-  top: 0;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  z-index: 1;
-  font-size: 1.3rem;
-}
-a,
-a:visited {
-  color: #bbb;
-  font-weight: bold;
-  font-size: 1.3rem;
-}
-
-.navbar {
-  background-color: #333;
-  height: 7.75vh;
-  width: 100%;
-  position: sticky;
-  top: 0;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  z-index: 1;
-  margin-bottom: 20px;
-}
 /* Estilo de responsividade */
-@media (max-width: 600px) {
+@media (max-width: 670px) {
+  /* Container principal */
   #playerInfo {
-    padding: 15px;
+    width: fit-content;
+    padding: 70px;
   }
-
-  h2 {
-    font-size: 20px;
-  }
-
-  p {
-    font-size: 14px;
+  .navbar {
+    background-color: #333;
+    height: 7.75vh;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    z-index: 800;
+    font-size: 1em;
   }
 }

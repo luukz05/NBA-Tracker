@@ -127,7 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const playerHTML = `
         <h2>${data.longName} - ${data.team}</h2>
         <div class="img-container">
-          <img src="${data.nbaComHeadshot}" alt="${data.espnName} Headshot" style="width: auto; height: 30vh;">
+          <img src="${data.nbaComHeadshot}" alt="${data.espnName} Headshot" style="width: 80vw; height: auto;">
           <img class="team-logo" src="${playerDetails.Logo}" alt="${data.longName}">
         </div>
         <p>Data de Nascimento: ${formatBDay(data.bDay)}</p>
@@ -135,16 +135,13 @@ document.addEventListener("DOMContentLoaded", function () {
         <p>Peso: ${formatWeight(data.weight)}</p>
         <p>Experiência: ${data.exp === "R" ? "Rookie" : `${data.exp} anos`}</p>
         <p>Último Jogo: ${lastGameInfo.formattedDate} - ${lastGameInfo.homeTeam} vs ${lastGameInfo.awayTeam}</p>
-        <p>Link ESPN: <a href="${data.espnLink}" target="_blank">${
-          data.espnLink
-        }</a></p>
-        <p>Link NBA: <a href="${data.nbaComLink}" target="_blank">${
-          data.nbaComLink
-        }</a></p>
+        <a href="${data.espnLink}" target="_blank">Perfil do Jogador na ESPN</a>
+        <a href="${data.nbaComLink}" target="_blank">Perfil do Jogador na NBA
+        </a>
         <p>Posição: ${data.pos}</p>
-        <p>ID do Jogador na ESPN: ${data.espnID}</p>
+        <p>ID do Jogador na ESPN: ${data.espnID} </p>
         <p>ID do Jogador na NBA.com: ${data.nbaComID}</p>
-        <p>Lesão: ${injury.description || "Nenhuma lesão recente"}</p>
+        <p style="word-wrap: break-all;">Lesão: ${injury.description || "Nenhuma lesão recente"} </p>
         <p>Data da Lesão: ${
           injury.injDate ? formatDate(injury.injDate) : "N/A"
         }</p>

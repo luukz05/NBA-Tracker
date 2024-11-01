@@ -30,7 +30,7 @@ try {
       const newsHeadline = document.createElement("div"); // Cria um elemento div para exibir cada notícia
       newsHeadline.class = "news-headlineee"; // Define uma classe para estilização
       newsHeadline.style = // Define o estilo inline do elemento
-        "background: #575757d8;width:50%;display:flex;justify-content:center; align-items:center;flex-direction:column;padding:1rem;margin-top:10px;border-radius:16px;";
+        "background: #575757d8;width:60%;display:flex;justify-content:center; align-items:center;flex-direction:column;padding:1rem;margin-top:10px;border-radius:16px;";
       newsHeadline.href = data.link; // Adiciona o link da notícia
       newsHeadline.target = "_blank"; // Abre o link em uma nova aba
 

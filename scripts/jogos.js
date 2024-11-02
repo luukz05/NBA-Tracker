@@ -16,6 +16,29 @@ function formatDate(date) {
   return `${year}${month}${day}`; // Retorna a data formatada
 }
 
+// Função para converter o horário do jogo para o formato brasileiro
+function convertToBrazilTime(gameTime) {
+  gameTime = gameTime.trim().toLowerCase();
+  const regex = /^(\d{1,2}):(\d{2})(p)$/; // Aceita apenas 'p'
+  const match = gameTime.match(regex);
+
+  if (!match) {
+    throw new Error("Formato inválido. Use 'hh:mm p'.");
+  }
+
+  let hours = parseInt(match[1]);
+  const minutes = match[2];
+
+  if (hours < 12) {
+    hours += 12; // Converte para 24 horas
+  }
+
+  hours = (hours + 1) % 24; // Adiciona 1 hora e evita overflow (24:00)
+  const newHours = hours % 12 === 0 ? 12 : hours % 12;
+
+  return `${newHours}:${minutes}pm`; // Saída sempre termina com 'pm'
+}
+
 // Função assíncrona para buscar os placares da NBA
 async function fetchNBAScores() {
   const today = new Date(); // Obtém a data atual
@@ -115,7 +138,8 @@ function displayScores(games, container) {
         const awayTeam = game.away || "Desconhecido"; // Time visitante
         const homePts = game.homePts || "0"; // Pontos do time da casa
         const awayPts = game.awayPts || "0"; // Pontos do time visitante
-        const status = game.gameStatus || "Not Started Yet"; // Status do jogo
+        const status = game.gameStatus || "Não Iniciado"; // Status do jogo
+        const time = convertToBrazilTime(game.gameTime); // Converte o horário do jogo
 
         // Define a cor do status do jogo
         let statusColor = "#ffffff"; // Cor padrão
@@ -140,8 +164,12 @@ function displayScores(games, container) {
               <span class="team-name">${awayTeam}</span> <!-- Nome do time visitante -->
             </div>
             <span class="points">${awayPts}</span> <!-- Pontos do time visitante -->
-            <span style="font-size: 1.8vw;">VS</span> <!-- Versus -->
+            <div style="display:flex;justify-content:center;align-items:center;flex-direction:column; gap:2vh;">
+              <span style="font-size: .5vw;">${time}</span> <!-- Horário formatado -->
+              <span style="font-size: 1.8vw;">VS</span> <!-- Versus -->
+            </div>
             <span class="points">${homePts}</span> <!-- Pontos do time da casa -->
+
             <div class="detail">
               <img src="${teamsLogos[homeTeam]}" alt="${homeTeam}" class="team-logo"> <!-- Logotipo do time da casa -->
               <span class="team-name">${homeTeam}</span> <!-- Nome do time da casa -->

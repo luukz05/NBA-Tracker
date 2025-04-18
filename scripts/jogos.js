@@ -18,7 +18,13 @@ function formatDate(date) {
 
 // Função para converter o horário do jogo para o formato brasileiro
 function convertToBrazilTime(gameTime) {
-  gameTime = gameTime.trim().toLowerCase();
+  // Verifica se gameTime é uma string válida
+  if (!gameTime || typeof gameTime !== "string") {
+    return "Horário não disponível"; // Retorna um valor padrão se gameTime não for válido
+  }
+
+  gameTime = gameTime.trim().toLowerCase(); // Converte para minúsculas e remove espaços em branco
+
   const regex = /^(\d{1,2}):(\d{2})(p)$/; // Aceita apenas 'p'
   const match = gameTime.match(regex);
 

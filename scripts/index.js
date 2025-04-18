@@ -1,5 +1,4 @@
-// Importa a chave da API do arquivo externo para mantê-la segura e reutilizável em diferentes requisições
-import apiKey from "./scripts/rapid-api-key.js";
+import apiKey from "./rapid-api-key.js"; // Importa a chave da API do arquivo rapidApiKey.js
 
 // Define a URL para as principais notícias da NBA usando o RapidAPI
 const urlTopNews =

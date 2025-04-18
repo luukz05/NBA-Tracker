@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   teamsList.innerHTML = "<p>Carregando times...</p>";
 
   // Fazendo a requisição para obter os times
-  fetch(`../scripts/times.json`)
+  fetch(`./scripts/times.json`)
     .then((response) => response.json())
     .then((data) => {
       teamsList.innerHTML = "";
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 `;
 
           // Chama a API de jogadores
-          fetch(`../scripts/roster.json`)
+          fetch(`./scripts/roster.json`)
             .then((response) => response.json())
             .then((data) => {
               // Acessa os jogadores pelo código do time

@@ -1,4 +1,4 @@
-import apiKey from "../scripts/rapid-api-key.js";
+import apiKey from "./scripts/rapid-api-key.js";
 
 // Espera o carregamento completo do DOM antes de executar o script
 document.addEventListener("DOMContentLoaded", function () {

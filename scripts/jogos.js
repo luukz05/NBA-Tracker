@@ -1,5 +1,5 @@
 // Importa a chave da API de um arquivo separado para uso nas requisições
-import apiKey from "../scripts/rapid-api-key.js";
+import apiKey from "./scripts/rapid-api-key.js";
 
 // Obtém os elementos do DOM onde os dados dos jogos serão exibidos
 const scoresDiv = document.getElementById("scores");
@@ -115,7 +115,7 @@ function displayScores(games, container) {
   }
 
   // Busca os logotipos dos times a partir de um arquivo JSON
-  fetch(`../scripts/times.json`)
+  fetch(`./scripts/times.json`)
     .then((response) => response.json()) // Converte a resposta para JSON
     .then((data) => {
       const teamsLogos = {}; // Objeto para armazenar os logotipos dos times

@@ -1,15 +1,21 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../styles/jogadores.css" />
     <link
       rel="shortcut icon"
       href="../assets/favicon.png"
       type="image/x-icon"
     />
-    <link rel="stylesheet" href="../styles/home.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Matemasie&display=swap"
+      rel="stylesheet"
+    />
+    <title>NBA Tracker</title>
+    <link rel="stylesheet" href="../styles/jogos.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -19,7 +25,7 @@
   </head>
   <body>
     <div class="navbar">
-      <a href="Home.html">Home</a>
+      <a href="index.html">Home</a>
       <a href="Times.html">Times</a>
       <img
         src="../assets/logo.png"
@@ -35,9 +41,11 @@
       <a href="Jogos.html">Jogos</a>
       <a href="https://www.nbadle.com/" target="_blank">NBADle</a>
     </div>
-    <div id="playerInfo" style="text-align: justify"></div>
-    <div class="images-container" id="imagesContainer"></div>
-
-    <script type="module" src="../scripts/jogadores.js"></script>
+    <h1 id="title-dia"></h1>
+    <div id="scores"></div>
+    <h1 id="title-amanha"></h1>
+    <div id="scores-amanha"></div>
+    <div class="loading" id="loading">Carregando...</div>
+    <script type="module" src="../scripts/jogos.js"></script>
   </body>
 </html>
